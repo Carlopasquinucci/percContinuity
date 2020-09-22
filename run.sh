@@ -1,10 +1,21 @@
 
 # put all the inlet and outlet patches
 
-#run it as sh run.sh postProcessing/flowRatePatch\(name\=patch1\)/0/surfaceFieldValue.dat postProcessing/flowRatePatch\(name\=patch2\)/0/surfaceFieldValue.dat
-tail -n 1 $1 > inlet_1.log
-tail -n 1 $2 > inlet_2.log
-tail -n 1 $3 > Outlet.log
+# input time patch1, patch2, patch3
+
+time=$1
+patch1=$2
+patch2=$3
+patch3=$4
+
+file1=postProcessing/flowRatePatch\(name\=$patch1\)/$time/surfaceFieldValue.dat
+file2=postProcessing/flowRatePatch\(name\=$patch2\)/$time/surfaceFieldValue.dat
+file3=postProcessing/flowRatePatch\(name\=$patch3\)/$time/surfaceFieldValue.dat
+
+
+tail -n 1 $file1> inlet_1.log
+tail -n 1 $file2 > inlet_2.log
+tail -n 1 $file3 > Outlet.log
 
 
 inlet_1=$(awk '{print $NF}' inlet_1.log)
